@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>トップ</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+  </head>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap"
+    rel="stylesheet"
+  />
+  <body>
+    <div class="outer">
+      <div class="inner">
+        <div class="heading">ログイン成功</div>
+        <div class="login-message" sec:authorize="hasRole('ROLE_ADMIN')">
+          管理者でログインしています。
+        </div>
+        <div class="login-message" sec:authorize="hasRole('ROLE_USER')">
+          一般ユーザでログインしています。
+        </div>
+        <form th:method="post" th:action="@{/logout}">
+          <input type="submit" value="ログアウト" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
